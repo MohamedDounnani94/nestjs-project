@@ -15,7 +15,7 @@ export class HumanService {
     const existingHuman = await this.humansRepository.findOne({taxCode: human.taxCode})
     if(existingHuman) return `Another human already exists with this taxCode: ${human.taxCode}`
     const resource = await this.humansRepository.save(human)
-    return `${resource.name + ' ' + resource.lastname} successfully created`
+    return `${resource.name + ' ' + resource.lastname} has been successfully created`
   }
   async findAll(): Promise <Human[]> {
     return this.humansRepository.find()
