@@ -1,7 +1,7 @@
-import CreateHumanDto from './create-human.dto'
-import FindByIdHumanDto from './find-by-id-human.dto'
+import HumanBodyRequestDto from './human-body-request.dto'
+import HumanIdRequestDto from './human-id-request.dto'
 
 export {
-  CreateHumanDto,
-  FindByIdHumanDto
+  HumanBodyRequestDto,
+  HumanIdRequestDto,
 }

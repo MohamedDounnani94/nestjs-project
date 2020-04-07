@@ -25,7 +25,14 @@ export class HumanService {
     return this.humansRepository.findOne(id)
   }
 
-  async remove(id: string): Promise<void> {
+  async deleteOneById(id: number): Promise<string> {
     await this.humansRepository.delete(id)
+    return `resource: ${id} successfully deleted`
   }
+
+  async updateById(id: number, human): Promise<Human> {
+    await this.humansRepository.update(id, human)
+    return this.humansRepository.findOne(id)
+  }
+
 }

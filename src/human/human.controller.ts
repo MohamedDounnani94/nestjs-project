@@ -1,7 +1,7 @@
-import { Controller, Get, Param, Post, Body, Delete, Patch, Put } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Delete, Patch } from '@nestjs/common';
 import { HumanService } from './human.service';
 import IHuman from './human.interface';
-import { CreateHumanDto, FindByIdHumanDto } from './dto/'
+import { HumanBodyRequestDto, HumanIdRequestDto } from './dto/'
 
 @Controller('humans')
 export class HumanController {
@@ -13,27 +13,22 @@ export class HumanController {
   }
 
   @Post()
-  create(@Body() createHumanDto: CreateHumanDto ) {
-    return this.humanService.create(createHumanDto)
+  create(@Body() humanBodyRequestDto: HumanBodyRequestDto ) {
+    return this.humanService.create(humanBodyRequestDto)
   }
 
   @Get(':id')
-  findOneById(@Param() findByIdHumanDto: FindByIdHumanDto): Promise<IHuman> {
-    return this.humanService.findOneById(findByIdHumanDto.id)
+  findOneById(@Param() humanIdRequestDto: HumanIdRequestDto): Promise<IHuman> {
+    return this.humanService.findOneById(humanIdRequestDto.id)
   }
 
   @Delete(':id')
-  deleteOneById(@Param() FindByIdHumanDto: FindByIdHumanDto) {
-    return 'delete method'
-  }
-
-  @Delete()
-  deleteAll() {
-    return 'delete all method'
+  deleteOneById(@Param() humanIdRequestDto: HumanIdRequestDto) {
+    return this.humanService.deleteOneById(humanIdRequestDto.id)
   }
 
   @Patch(':id')
-  updateById(@Param() FindByIdHumanDto: FindByIdHumanDto, @Body() body: CreateHumanDto) {
-    return 'update method'
+  updateById(@Param() humanIdRequestDto: HumanIdRequestDto, @Body() humanBodyRequestDto: HumanBodyRequestDto) {
+    return this.humanService.updateById(humanIdRequestDto.id, humanBodyRequestDto)
   }
 }
